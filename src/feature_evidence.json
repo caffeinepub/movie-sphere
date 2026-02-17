@@ -1,0 +1,27 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-an-admin-only-movie-video-file-attachment-upload-capability-provide-backend-apis-for-the-admin-to-upload-a-movie-video-file-as-bytes-and-store-it-in-canister-and-allow-the-frontend-to-play-the-uploaded-file-from-moviedetailpage-without-requiring-an-external-video-url",
+      "featureTitle": "Add an admin-only movie video file attachment upload capability: provide backend APIs for the admin to upload a movie video file (as bytes) and store it in-canister, and allow the frontend to play the uploaded file from MovieDetailPage without requiring an external video URL.",
+      "files": [
+        "frontend/src/components/admin/MovieEditorDialog.tsx",
+        "frontend/src/hooks/useMovieMutations.ts",
+        "frontend/src/pages/MovieDetailPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

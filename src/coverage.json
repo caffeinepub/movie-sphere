@@ -1,0 +1,62 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-17T14:57:08.620Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-7",
+        "summary": "Ensure there is exactly one admin for Movie Sphere (the site owner) by implementing a secure admin bootstrap flow: if no admin is set yet, the first authenticated principal to claim admin becomes the permanent admin; once set, non-admin principals must never be able to overwrite or claim admin.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Add an admin-only movie video file attachment upload capability: provide backend APIs for the admin to upload a movie video file (as bytes) and store it in-canister, and allow the frontend to play the uploaded file from MovieDetailPage without requiring an external video URL.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/backend.d.ts",
+          "frontend/src/components/admin/MovieEditorDialog.tsx",
+          "frontend/src/hooks/useMovieMutations.ts",
+          "frontend/src/pages/MovieDetailPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/backend.d.ts",
+          "frontend/src/components/admin/MovieEditorDialog.tsx",
+          "frontend/src/hooks/useMovieMutations.ts",
+          "frontend/src/pages/MovieDetailPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/admin/MovieEditorDialog.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useMovieMutations.ts",
+    "frontend/src/pages/MovieDetailPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

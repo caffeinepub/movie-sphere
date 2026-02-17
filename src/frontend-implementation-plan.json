@@ -1,0 +1,40 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Admin-only movie video attachment upload and in-app playback",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "summary": "Allow admins to attach/upload a movie video file (bytes) and enable Movie Detail playback from stored video while keeping URL-based playback compatible.",
+      "acceptanceCriteria": [
+        "The backend exposes admin-guarded methods to upload and retrieve a movie video file (bytes) associated with a movie",
+        "Non-admin callers cannot upload, replace, or delete stored movie video files",
+        "In the admin movie create/edit dialog, a file input is available for attaching a video file and is only shown/usable for admins",
+        "After uploading a video file for a movie, the movie detail page can play the uploaded video successfully",
+        "Existing URL-based video playback continues to work for movies that still use a video URL (backwards compatible)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Align frontend Movie typing with current UI needs by ensuring the Movie type supports both URL-based playback (e.g., optional videoUrl) and the uploaded attachment (videoBlob: ExternalBlob), matching the canister interface used by the app."
+        },
+        {
+          "path": "frontend/src/components/admin/MovieEditorDialog.tsx",
+          "operation": "modify",
+          "description": "Add an admin-only video file attachment input to the create/edit dialog using the existing authorization hook (authorization component) to hide/disable for non-admins; on submit, pass selected file data so the admin can upload it via blob-storage ExternalBlob. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useMovieMutations.ts",
+          "operation": "modify",
+          "description": "Extend movie create/edit mutations to optionally upload/replace the attached video after successful metadata save by calling the existing uploadMovieVideo backend capability; use the blob-storage ExternalBlob wrapper (ExternalBlob.fromBytes and optional withUploadProgress) and invalidate relevant movie queries on success. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/MovieDetailPage.tsx",
+          "operation": "modify",
+          "description": "Update the video player to prefer playing the uploaded attachment when available by using blob-storage ExternalBlob.getDirectURL() for the video source, and fall back to the existing movie video URL field when no attachment exists (backwards compatible). Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

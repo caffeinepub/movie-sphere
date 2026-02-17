@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a movie website called \"movie sphere\" with admin-only access for uploading movies.",
+  "architectural_notes": [
+    "Implement role-based access control (admin-only) for movie upload/manage features.",
+    "Admin-only UI controls must gate movie file attachment upload; non-admin users should not see or access upload endpoints."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-movie-website-named-movie-sphere-with-a-public-catalog-where-unauthenticated-visitors-can-browse-movies-and-open-a-movie-detail-page-to-watch-the-movie",
+      "title": "Create a movie website named \"Movie Sphere\" with a public catalog where unauthenticated visitors can browse movies and open a movie detail page to watch the movie.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-authentication-using-internet-identity-and-establish-an-admin-role-so-that-only-the-admin-can-create-update-delete-movie-entries",
+      "title": "Implement authentication using Internet Identity and establish an admin role so that only the admin can create/update/delete movie entries.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-only-movie-upload-manage-experience-that-allows-the-admin-to-add-movies-with-metadata-title-description-poster-image-url-video-url-and-to-edit-or-remove-existing-movies",
+      "title": "Add an admin-only movie upload/manage experience that allows the admin to add movies with metadata (title, description, poster image URL, video URL) and to edit or remove existing movies.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-establish-a-coherent-distinct-visual-theme-for-movie-sphere-colors-typography-layout-components-and-apply-it-consistently-across-the-catalog-detail-and-admin-pages-avoid-blue-purple-as-primary-colors",
+      "title": "Establish a coherent, distinct visual theme for Movie Sphere (colors, typography, layout, components) and apply it consistently across the catalog, detail, and admin pages (avoid blue/purple as primary colors).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-generated-static-image-assets-logo-and-a-cinematic-background-from-frontend-public-assets-generated-in-the-app-shell-header-landing-without-routing-images-through-the-backend",
+      "title": "Render generated static image assets (logo and a cinematic background) from frontend/public/assets/generated in the app shell (header/landing) without routing images through the backend.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-only-movie-video-file-attachment-upload-capability-provide-backend-apis-for-the-admin-to-upload-a-movie-video-file-as-bytes-and-store-it-in-canister-and-allow-the-frontend-to-play-the-uploaded-file-from-moviedetailpage-without-requiring-an-external-video-url",
+      "title": "Add an admin-only movie video file attachment upload capability: provide backend APIs for the admin to upload a movie video file (as bytes) and store it in-canister, and allow the frontend to play the uploaded file from MovieDetailPage without requiring an external video URL.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a movie website named \"movie sphere\"",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Admin account for the user and restrict movie uploading to admin-only",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Provide a secure admin bootstrap flow so the user can become admin without requiring code changes: if no admin is set yet, the first authenticated principal to claim admin becomes the admin; once set, admin cannot be overwritten by non-admins.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add an admin-only movie file attachment upload option in the movie upload/manage UI (visible and usable only by the admin).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Ensure there is exactly one admin for Movie Sphere (the site owner) by implementing a secure admin bootstrap flow: if no admin is set yet, the first authenticated principal to claim admin becomes the permanent admin; once set, non-admin principals must never be able to overwrite or claim admin.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "movie sphere",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

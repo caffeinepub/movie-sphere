@@ -1,0 +1,71 @@
+{
+  "kind": "build_request",
+  "title": "Lock admin to the site owner and add admin-only movie file attachment upload",
+  "projectName": "movie sphere",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "text": "Ensure there is exactly one admin for Movie Sphere (the site owner) by implementing a secure admin bootstrap flow: if no admin is set yet, the first authenticated principal to claim admin becomes the permanent admin; once set, non-admin principals must never be able to overwrite or claim admin.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "make only me as admin for this website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When no admin is set, an authenticated caller can successfully claim admin once",
+        "After an admin is set, any non-admin caller attempting to claim/admin-init is rejected (traps)",
+        "Admin-only methods (addMovie/updateMovie/deleteMovie and any new upload APIs) continue to reject non-admin callers",
+        "The existing isCallerAdmin check correctly reflects the locked-in admin status"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add an admin-only movie video file attachment upload capability: provide backend APIs for the admin to upload a movie video file (as bytes) and store it in-canister, and allow the frontend to play the uploaded file from MovieDetailPage without requiring an external video URL.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "in the  movie upload option add file attachment for uploading movie only visible for admin"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The backend exposes admin-guarded methods to upload and retrieve a movie video file (bytes) associated with a movie",
+        "Non-admin callers cannot upload, replace, or delete stored movie video files",
+        "In the admin movie create/edit dialog, a file input is available for attaching a video file and is only shown/usable for admins",
+        "After uploading a video file for a movie, the movie detail page can play the uploaded video successfully",
+        "Existing URL-based video playback continues to work for movies that still use a video URL (backwards compatible)"
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor with logic in backend/main.mo (generate backend/migration.mo only if an upgrade requires state migration).",
+    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, and anything under frontend/src/components/ui (compose instead).",
+    "Use English for any user-facing UI text."
+  ],
+  "nonGoals": [
+    "Implementing third-party/external video storage or CDN hosting (e.g., S3, YouTube integration).",
+    "Allowing non-admin users to upload any movie files or manage movies.",
+    "Adding real-time upload progress via websockets/push mechanisms."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

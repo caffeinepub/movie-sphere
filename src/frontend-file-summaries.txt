@@ -1,0 +1,21 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, theme provider, and routing configuration for catalog, movie detail, admin, and access denied pages.",
+  "frontend/src/components/layout/SiteLayout.tsx": "Root layout component that wraps all pages with header, main content area, and footer.",
+  "frontend/src/components/layout/Header.tsx": "Site header with Movie Sphere logo, navigation links, and login button; conditionally shows admin link for admin users.",
+  "frontend/src/components/layout/Footer.tsx": "Footer component with caffeine.ai attribution and copyright notice.",
+  "frontend/src/components/auth/LoginButton.tsx": "Authentication button that handles Internet Identity login/logout with loading states and query cache clearing.",
+  "frontend/src/components/auth/ProfileSetupModal.tsx": "Modal dialog that prompts new users to enter their name on first login, preventing modal flash with proper loading state handling.",
+  "frontend/src/components/auth/AdminRouteGuard.tsx": "Route guard component that redirects non-admin users to access denied page when attempting to access admin routes.",
+  "frontend/src/pages/AccessDeniedPage.tsx": "Access denied page displayed when unauthorized users attempt to access admin-only routes.",
+  "frontend/src/pages/CatalogPage.tsx": "Public movie catalog page with hero section using generated background image and responsive grid of movie cards.",
+  "frontend/src/pages/MovieDetailPage.tsx": "Movie detail page with video player that prefers uploaded video blob over URL, movie information display, and poster sidebar.",
+  "frontend/src/pages/AdminMoviesPage.tsx": "Admin-only page for managing movies with list view and add movie functionality.",
+  "frontend/src/components/admin/MovieListItem.tsx": "Individual movie list item in admin view with edit and delete actions, using Tailwind CSS v3 class names.",
+  "frontend/src/components/admin/MovieEditorDialog.tsx": "Dialog form for creating and editing movies with admin-only video file upload input, progress tracking, and validation for required fields.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching movies and user profiles from the backend, with proper ES6 imports for React Query utilities.",
+  "frontend/src/hooks/useAuthorization.ts": "Custom hook that provides authentication and admin authorization state.",
+  "frontend/src/hooks/useMovieMutations.ts": "React Query mutation hooks for adding, updating, and deleting movies with support for video file uploads via ExternalBlob and progress tracking.",
+  "frontend/src/index.css": "Global styles with OKLCH color system using amber/gold tones for a cinematic theme, avoiding blue/purple colors.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom color tokens, Inter font family, and extended theme for Movie Sphere design system.",
+  "frontend/src/hooks/useActor.ts": "Handles backend actor initialization with Internet Identity and automatically attempts to claim admin role for the first authenticated user via claimAdmin() call."
+}

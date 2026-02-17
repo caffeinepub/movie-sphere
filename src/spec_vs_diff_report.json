@@ -1,0 +1,46 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-17T14:57:08.617Z",
+  "summary": "REQ-7 is largely implemented via a one-time claimAdmin() with an adminClaimed flag and admin guards on movie mutations/upload. REQ-8 is partially implemented (admin-only upload + frontend playback via videoBlob), but URL-based playback/backward compatibility appears broken due to removing videoUrl from the Movie type and migration dropping existing videoUrl data; also no explicit backend “retrieve bytes” API is shown beyond returning Movie with videoBlob.",
+  "missing_requirements": [
+    {
+      "id": "REQ-8",
+      "requirement": "Existing URL-based video playback continues to work for movies that still use a video URL (backwards compatible).",
+      "reason": "The backend Movie type no longer contains videoUrl, the migration explicitly drops videoUrl (sets videoBlob = null), and the MovieDetailPage only attempts to play from videoBlob (no fallback to a URL field). This prevents existing URL-based videos from continuing to work after upgrade.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo",
+        "frontend/src/pages/MovieDetailPage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Backend exposes admin-guarded methods to upload and retrieve a movie video file (bytes) associated with a movie.",
+      "reason": "An admin-guarded uploadMovieVideo(id, video : Storage.ExternalBlob) is present, but the diff does not show any explicit API to retrieve the stored video bytes (only getMovie returning Movie with videoBlob). If retrieval is intended as a dedicated bytes/download endpoint, it is not evidenced in the diff.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Upload progress tracking plumbing (onProgress callback, uploadProgress state, ExternalBlob.withUploadProgress) for video uploads in the admin dialog and mutations.",
+      "reason": "REQ-8 does not require upload progress, and the BuildRequest explicitly lists real-time upload progress mechanisms as a non-goal (even if this implementation is client-side, it is still an unrequested feature addition).",
+      "evidence": [
+        "frontend/src/components/admin/MovieEditorDialog.tsx",
+        "frontend/src/hooks/useMovieMutations.ts"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/admin/MovieEditorDialog.tsx",
+    "frontend/src/hooks/useMovieMutations.ts",
+    "frontend/src/pages/MovieDetailPage.tsx",
+    "project_state.json"
+  ]
+}
